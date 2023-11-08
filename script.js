@@ -46,7 +46,7 @@ window.onload = () => {
           row.appendChild(col);
 
           discardBtn.addEventListener("click", function () {
-            card.remove();
+            col.remove();
           });
           buyNow.addEventListener("click", function () {
             const cart = document.getElementById("cartList");
