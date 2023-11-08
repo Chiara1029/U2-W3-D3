@@ -1,6 +1,3 @@
-//Realizzare una pagina "libreria" contenente libri derivanti da una chiamata HTTP di tipo GET.
-//endpoint: https://striveschool-api.herokuapp.com/books
-
 window.onload = () => {
   fetch("https://striveschool-api.herokuapp.com/books")
     .then((response) => {
@@ -12,7 +9,7 @@ window.onload = () => {
         if (book.title) {
           const row = document.getElementById("bookshelf");
           const col = document.createElement("div");
-          col.className = "col-sm-12 col-md-6 col-lg-2 mb-2 gx-4";
+          col.className = "col-sm-12 col-md-6 col-lg-2 g-4";
 
           const card = document.createElement("div");
           card.className = "card";
@@ -29,10 +26,10 @@ window.onload = () => {
           cardTitle.innerText = book.title;
 
           const bookPrice = document.createElement("p");
-          bookPrice.innerText = book.price;
+          bookPrice.innerText = book.price + " $";
 
           const discardBtn = document.createElement("button");
-          discardBtn.className = "btn btn-primary m-1";
+          discardBtn.className = "btn btn-primary";
           discardBtn.innerText = "Scarta";
 
           const buyNow = document.createElement("button");
@@ -75,6 +72,3 @@ window.onload = () => {
     })
     .catch((error) => console.log(error));
 };
-
-//EXTRA
-//2) Aggiungi vicino ad ogni libro del carrello un pulsante per rimuoverlo dal carrello.
