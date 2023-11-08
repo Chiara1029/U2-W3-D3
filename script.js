@@ -31,28 +31,50 @@ window.onload = () => {
           const bookPrice = document.createElement("p");
           bookPrice.innerText = book.price;
 
-          const scartaBtn = document.createElement("button");
-          scartaBtn.className = "btn btn-primary";
-          scartaBtn.innerText = "Scarta";
+          const discardBtn = document.createElement("button");
+          discardBtn.className = "btn btn-primary m-1";
+          discardBtn.innerText = "Scarta";
+
+          const buyNow = document.createElement("button");
+          buyNow.className = "btn btn-success m-1";
+          buyNow.innerText = "Compra Ora";
 
           cardBody.appendChild(cardTitle);
           cardBody.appendChild(bookPrice);
-          cardBody.appendChild(scartaBtn);
+          cardBody.appendChild(discardBtn);
+          cardBody.appendChild(buyNow);
           card.appendChild(img);
           card.appendChild(cardBody);
           col.appendChild(card);
           row.appendChild(col);
+
+          discardBtn.addEventListener("click", function () {
+            card.remove();
+          });
+          buyNow.addEventListener("click", function () {
+            const cart = document.getElementById("cartList");
+            const cartElement = document.createElement("li");
+            cartElement.innerText = book.title + " " + book.price;
+
+            const removeBook = document.createElement("button");
+            removeBook.className = "btn btn-danger m-1";
+            removeBook.innerText = "Remove";
+
+            cartElement.appendChild(removeBook);
+            cart.appendChild(cartElement);
+
+            localStorage.setItem(book.title, book.price);
+
+            removeBook.addEventListener("click", function () {
+              cartElement.remove();
+              localStorage.removeItem(book.title, book.price);
+            });
+          });
         }
       });
     })
     .catch((error) => console.log(error));
 };
 
-//REQUISITI DELLA PAGINA
-//3) Sempre nel "card-body" inserisci un pulsante "scarta", se premuto dovrà far scomparire la card dalla pagina
-
 //EXTRA
-//1) Crea una lista che rappresenti il carrello del negozio e inseriscila dove vuoi nella pagina.
-//   Aggiungi un altro pulsante "compra ora" vicino a "scarta" nelle card per aggiungere il libro al carrello.
-//   Il carrello dovrà persistere nello storage del browser
 //2) Aggiungi vicino ad ogni libro del carrello un pulsante per rimuoverlo dal carrello.
